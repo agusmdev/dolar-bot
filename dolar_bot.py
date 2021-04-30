@@ -20,25 +20,21 @@ class Dolar:
         self.chat_id = chat_id
         self.api_url = api_url
         self.tgm_token = tgm_token
-        self.buy, self.sell = self.get_usd_price()
+        self.buy, self.sell, self.avg = self.get_usd_price()
         self.rate = rate
         
     def get_usd_price(self):
-        json = requests.get(self.api_url).json()
-        usd = [i['casa'] for i in json if "Blue" in i['casa']['nombre']][0]
-        return float(usd['compra'].replace(',', '.')), float(usd['venta'].replace(',', '.'))
+        usd = requests.get(self.api_url).json()['blue']
+        return usd['value_buy'], usd['value_sell'], usd['value_avg']
         
     def get_spread(self):
         return self.sell - self.buy
-
-    def get_sell_amount(self):
-        return self.buy + self.get_spread()/2
 
     def json(self):
         return self.__dict__
     
     def get_month_salary(self, hours):
-        return self.rate * hours * self.get_sell_amount()
+        return self.rate * hours * self.avg
 
     def save_prev(self):
         with open('prev.json', 'w') as f:
