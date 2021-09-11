@@ -43,7 +43,7 @@ class Dolar:
     
     @check_previous
     def notify(self, hours=160):
-        usd = f"Dolar blue:\ncompra: {self.buy}\nventa: {self.sell}\nspread: {self.get_spread()}"
+        usd = f"Dolar blue:\ncompra: {self.buy}\nventa: {self.sell}\npromedio: {self.avg}\nspread: {self.get_spread()}"
         msg = f"En un mes de {hours} horas a {self.rate} por hora, el salario es: {self.get_month_salary(hours)}"
         try:
             requests.post(f"https://api.telegram.org/bot{self.tgm_token}/sendMessage",
