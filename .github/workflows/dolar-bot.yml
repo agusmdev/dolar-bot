@@ -2,7 +2,7 @@ name: dolar-bot
 
 on:
   schedule:
-    - cron: "*/5 * * * *" #runs at 00:00 UTC everyday
+    - cron: "0 8-20 * * 1-5" # business days between 8 and 20
   workflow_dispatch:
 
 jobs:
