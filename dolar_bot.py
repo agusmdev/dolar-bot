@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 def check_previous(func):
     def f(self, *args, **kwargs):
@@ -50,3 +51,11 @@ class Dolar:
             self.save_prev()
         except:
             self.notify(hours=hours)
+
+
+if __name__ == '__main__':
+    chat_id = os.getenv("CHAT_ID")
+    tgm_token = os.getenv("TGM_TOKEN")
+    api_url = os.getenv("API_URL")
+    d = Dolar(api_url, chat_id, tgm_token, rate=20)
+    d.notify(hours=166)
