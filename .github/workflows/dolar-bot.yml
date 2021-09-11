@@ -1,0 +1,28 @@
+name: dolar-bot
+    
+on:
+  schedule:
+    - cron: "* * * * *" #runs at 00:00 UTC everyday
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner.
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8 #install the python needed
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requirements.txt
+      - name: execute dolar-bot
+        run: |
+          python dolar_bot.py
+        env:
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          TGM_TOKEN: ${{ secrets.TGM_TOKEN }}
+          API_URL: ${{ secrets.API_URL }}
