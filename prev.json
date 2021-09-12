@@ -1,8 +1,0 @@
-{
-    "chat_id": "-",
-    "api_url": "https://www.dolarsi.com/api/api.php?type=valoresprincipales",
-    "tgm_token": ":",
-    "buy": 149.0,
-    "sell": 154.0,
-    "rate": 15
-}

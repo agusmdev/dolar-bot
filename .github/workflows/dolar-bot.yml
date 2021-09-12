@@ -2,7 +2,8 @@ name: dolar-bot
 
 on:
   schedule:
-    - cron: "0 8-20 * * 1-5" # business days between 8 and 20
+    # - cron: "0 8-20 * * 1-5" # business days between 8 and 20
+    - cron: 0 * * * * # Every hour
   workflow_dispatch:
 
 jobs:
@@ -27,3 +28,5 @@ jobs:
           CHAT_ID: ${{ secrets.CHAT_ID }}
           TGM_TOKEN: ${{ secrets.TGM_TOKEN }}
           API_URL: ${{ secrets.API_URL }}
+          RATE: ${{ secrets.RATE }}
+          HOURS: ${{ secrets.HOURS }}
